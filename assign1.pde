@@ -13,7 +13,7 @@ PImage robot;
 int robotX;
 int robotY;
 //light
-int lightX2;
+int lightX;
 int lightY2;
 int speedX;
 int xMove;
@@ -38,11 +38,10 @@ void setup() {
   robotY=80*floor(random(2,6));
   
   //light
-
-  lightX2=robotX+25;
+  speedX-=2;
+  lightX=robotX+25+speedX;//move
   lightY2=robotY+37;
-  speedX=-2;
- }
+}
 
 void draw() {
   // picture
@@ -81,8 +80,9 @@ void draw() {
   colorMode(RGB);
   stroke(255,0,0);
   strokeWeight(10);
-  line(min(lightX2,lightX2-40)-xMove,lightY2,lightX2-xMove,lightY2);
-  xMove+=2;//speed
-  xMove %=160;//again
+  line(lightX,lightY2,min(lightX+40,robotX+25),lightY2);
+  speedX-=2;
+  lightX=robotX+25+speedX;//move
+  lightY2=robotY+37;
+  speedX%=185;//25+80+80 Reincarnation
 }
-
